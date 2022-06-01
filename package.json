@@ -1,0 +1,21 @@
+{
+  "name": "codewars-solutions",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Brandon-Gottshall/CodeWars-Solutions.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Brandon-Gottshall/CodeWars-Solutions/issues"
+  },
+  "homepage": "https://github.com/Brandon-Gottshall/CodeWars-Solutions#readme"
+}
