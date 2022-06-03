@@ -1,0 +1,105 @@
+import KataWrapper from '../components/KataWrapper'
+
+<h1 className='text-3xl'>Maximum Subarray Sum -- 5 kyu</h1>
+
+### Task:
+The maximum sum subarray problem consists in finding the maximum sum of a contiguous subsequence 
+in an array or list of integers: 
+
+``` js
+maxSequence([-2, 1, -3, 4, -1, 2, 1, -5, 4])
+// should be 6: [4, -1, 2, 1]
+```
+
+Easy case is when the list is made up of only positive numbers and the maximum sum is the sum of the whole array.
+If the list is made up of only negative numbers, return 0 instead.
+Empty list is considered to have zero greatest sum. 
+Note that the empty list or array is also a valid sublist/subarray.
+
+### Attempt 1
+  
+``` js
+export const solution = function(testCase) {
+  return (
+    testCase.length 
+      ? testCase.every( el => el < 0 ) 
+        ? 0
+        : Math.max(...testCase.map((e,i,a) => {
+          let acummulator = 0;
+          return Math.max(...testCase.map(n => {
+            console.log(acummulator + n)
+            return acummulator += n
+          }))
+        }))
+      : 0
+)}
+```
+
+### Attempt 2
+
+``` js
+export const solution = function(testCase) {
+  return (
+    testCase.length 
+      ? testCase.every( el => el < 0 ) 
+        ? 0
+        : Math.max(...testCase.map((e,i,a) => {
+          let acummulator = 0;
+          let max = Math.max(...testCase.slice(i).map(n => {
+            let newAccum = n + acummulator
+            console.log(\`accumulator: ${acummulator}\`)
+            console.log(\`accumulator: ${acummulator} + n: ${n} = ${newAccum}\`)
+            console.log(\`newAccum: ${newAccum}\`)
+            acummulator = newAccum
+            return newAccum
+          }))
+          console.log(\`Max for this set ${max}\`)
+          return max
+        }))
+      : 0
+)}
+```
+
+### Final Solution
+  
+``` js
+export const solution = function(testCase) {
+  return (
+    testCase.length 
+      ? testCase.every( el => el < 0 ) 
+        ? 0
+        : Math.max(...testCase.map((e,i,a) => {
+          let acummulator = 0;
+          return Math.max(...testCase.slice(i).map(n => {
+            let newAccum = n + acummulator
+            acummulator = newAccum
+            return newAccum
+          }))
+        }))
+      : 0
+)}
+```
+
+### Final Solution
+
+export const solution = function(testCase) {
+  return (
+    testCase.length 
+      ? testCase.every( el => el < 0 ) 
+        ? 0
+        : Math.max(...testCase.map((e,i,a) => {
+          let acummulator = 0;
+          return Math.max(...testCase.slice(i).map(n => {
+            let newAccum = n + acummulator
+            acummulator = newAccum
+            return newAccum
+          }))
+        }))
+      : 0
+)}
+
+
+export const testCase = [-2, 1, -3, 4, -1, 2, 1, -5, 4]
+
+
+export default ({children}) => <KataWrapper solution={solution} testCase={testCase}>{children}</KataWrapper>
